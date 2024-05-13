@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkoutGitRepo('https://github.com/my/repo.git')
+                checkoutGitRepo('https://github.com/Rithin-QB/Jenkins_Shared_Libs.git')
             }
         }
         stage('Build') {
