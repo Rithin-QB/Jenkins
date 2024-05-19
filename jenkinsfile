@@ -18,9 +18,12 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                buildDockerImage('Dockerfile', 'my-image', 'latest')
+                dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
+                    buildDockerImage('Dockerfile', 'my-image', 'latest')
+                }
             }
         }
+  
         stage('Push Docker Image') {
             steps {
                 pushDockerImage('my-image', 'latest', 'docker.example.com')
