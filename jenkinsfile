@@ -26,7 +26,7 @@ pipeline {
   
         stage('Push Docker Image') {
             steps {
-                pushDockerImage('my-image', 'latest', 'https://hub.docker.com/repository/docker/rithin730/sample/')
+                pushDockerImage('rithin730/sample', 'latest', 'rithin730/sample/')
             }
         }
     }
