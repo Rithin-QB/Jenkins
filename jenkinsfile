@@ -19,14 +19,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
-                    buildDockerImage('Dockerfile', 'rithin730/sample', 'latest')
+                    buildDockerImage('Dockerfile', 'sample', 'latest')
                 }
             }
         }
   
         stage('Push Docker Image') {
             steps {
-                pushDockerImage('rithin730/sample', 'latest', 'rithin730/sample/')
+                pushDockerImage('sample', 'latest', 'rithin730/sample')
             }
         }
     }
