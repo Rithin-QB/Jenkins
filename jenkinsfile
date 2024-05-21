@@ -2,6 +2,10 @@
 
 pipeline {
     agent any
+     environment {
+        DOCKER_HUB_CREDENTIALS = credentials('dockerhub_id')
+    }
+
 
     stages {
         stage('Checkout') {
@@ -26,7 +30,9 @@ pipeline {
   
         stage('Push Docker Image') {
             steps {
-                pushDockerImage('sample', 'latest', 'rithin730/sample')
+                withDockerRegistry([credentialsId: 'dockerhub_id', url: 'https://hub.docker.com/repository/docker/rithin730/sample/']){
+                   pushDockerImage('sample', 'latest', 'rithin730/sample')
+                }
             }
         }
     }
