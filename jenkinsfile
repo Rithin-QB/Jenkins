@@ -3,17 +3,10 @@
 pipeline {
     agent any
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('dockerhub_credentials')
+        DOCKER_HUB_CREDENTIALS = credentials('Dockerhub_cred')
     }
 
     stages {
-        stage('Debug') {
-            steps {
-                script {
-                    echo "DOCKER_HUB_CREDENTIALS: ${DOCKER_HUB_CREDENTIALS}"
-                }
-            }
-        }
         stage('Checkout') {
             steps {
                 checkoutGitRepo('https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git', 'main')
