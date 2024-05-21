@@ -2,6 +2,9 @@
 
 pipeline {
     agent any
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('dockerhub_id')
+    }
 
     stages {
         stage('Checkout') {
@@ -26,6 +29,7 @@ pipeline {
   
         stage('Push Docker Image') {
             steps {
+                sh 'echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin'
                    pushDockerImage('sample', 'latest', 'rithin730/sample')
             }
         }
