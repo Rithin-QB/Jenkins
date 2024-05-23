@@ -1,11 +1,9 @@
 @Library('my-shared-library') _
 
 pipeline([
-    repoUrl: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git',
+    repoUrl: 'https://github.com/Rithin-QB/SpringBoot-Web-App.git',
     branch: 'main',
-    buildDir: 'java-maven-sonar-argocd-helm-k8s/spring-boot-app',
     buildCommand: 'mvn clean install',
-    dockerDir: 'java-maven-sonar-argocd-helm-k8s/spring-boot-app',
     dockerfile: 'Dockerfile',
     imageName: 'sample',
     imageTag: 'latest',
