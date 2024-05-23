@@ -1,6 +1,6 @@
 @Library('my-shared-library') _
 
-pipeline([
+call([
     repoUrl: 'https://github.com/Rithin-QB/SpringBoot-Web-App.git',
     branch: 'main',
     buildCommand: 'mvn clean install',
