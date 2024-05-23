@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                pipeline()
                 checkoutGitRepo('https://github.com/Rithin-QB/SpringBoot-Web-App.git', 'main')
             }
         }
