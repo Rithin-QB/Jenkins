@@ -9,19 +9,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkoutGitRepo('https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git', 'main')
+                checkoutGitRepo('https://github.com/Rithin-QB/SpringBoot-Web-App.git', 'main')
             }
         }
         stage('Build') {
             steps {
-                dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
                     buildCode('mvn clean install')
                 }
             }
         }
         stage('Build Docker Image') {
             steps {
-                dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
                     buildDockerImage('Dockerfile', 'sample', 'latest')
                 }
             }
