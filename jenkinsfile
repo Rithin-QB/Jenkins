@@ -17,13 +17,11 @@ pipeline {
                     buildCode('mvn clean install')
                 }
             }
-        }
         stage('Build Docker Image') {
             steps {
                     buildDockerImage('Dockerfile', 'sample', 'latest')
                 }
             }
-        }
   
         stage('Push Docker Image') {
             steps {
