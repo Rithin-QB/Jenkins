@@ -2,7 +2,7 @@
 
 def env = params.env
 
-runCompletePipeline([
+pipeline([
     repoUrl: 'https://github.com/Rithin-QB/SpringBoot-Web-App.git',
     branch: 'main',
     buildCommand: 'mvn clean install',
