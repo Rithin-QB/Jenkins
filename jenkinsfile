@@ -1,7 +1,6 @@
 @Library('my-shared-library') _
-def env = params.env
 
-pipeline([
+def config = [
     repoUrl: 'https://github.com/Rithin-QB/SpringBoot-Web-App.git',
     branch: 'main',
     buildCommand: 'mvn clean install',
@@ -10,4 +9,6 @@ pipeline([
     imageTag: 'latest',
     dockerRepoUrl: 'rithin730/sample',
     dockerCredentialsId: 'Dockerhub_cred'
-])
+]
+
+pipeline(config)
