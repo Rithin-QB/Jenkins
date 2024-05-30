@@ -11,4 +11,4 @@ def config = [
     dockerCredentialsId: 'Dockerhub_cred'
 ]
 
-custompipeline(config)
+BuildDeployDocker(config)
