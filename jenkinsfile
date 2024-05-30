@@ -1,14 +1,37 @@
 @Library('my-shared-library') _
 
-def config = [
-    repoUrl: 'https://github.com/Rithin-QB/SpringBoot-Web-App.git',
-    branch: 'main',
-    buildCommand: 'mvn clean install',
-    dockerfile: 'Dockerfile',
-    imageName: 'sample',
-    imageTag: 'latest',
-    dockerRepoUrl: 'rithin730/sample',
-    dockerCredentialsId: 'Dockerhub_cred'
-]
+pipeline {
+    agent any
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('Dockerhub_cred')
+    }
 
-customPipeline(config)
+    stages {
+        stage('Checkout') {
+            steps {
+                checkoutGitRepo('https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git', 'main')
+            }
+        }
+        stage('Build') {
+            steps {
+                dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
+                    buildCode('mvn clean install')
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
+                    buildDockerImage('Dockerfile', 'sample', 'latest')
+                }
+            }
+        }
+  
+        stage('Push Docker Image') {
+            steps {
+                sh 'echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin'
+                   pushDockerImage('sample', 'latest', 'rithin730/sample')
+            }
+        }
+    }
+}
